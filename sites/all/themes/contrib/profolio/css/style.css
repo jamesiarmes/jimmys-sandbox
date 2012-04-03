@@ -1,8 +1,7 @@
 @charset "utf-8";
-/* CSS Document */
-.image{
-  padding: 8px;
-  float: left;
+/*Footer trick - always att the bottom*/
+html {
+  height: 100%;
 }
 body {
   background-color: #f8f7f7;
@@ -10,6 +9,35 @@ body {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   font-size: 14px;
   margin: 0px;
+  height: 100%;
+}
+#wrap {
+  min-height: 100%;
+ }
+#main0 {
+  overflow:auto;
+  padding-bottom: 100px;
+}  /* must be same height as the footer */
+#footer0 {
+  position: relative;
+  margin-top: -100px; /* negative value of footer height */
+  height: 100px;
+  clear:both;
+}
+
+/* Opera Fix, for Opera 12 it doesn't need */
+body:before {/* thanks to Maleika (Kohoutec)*/
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}
+/*End footer trick*/
+
+.image{
+  padding: 8px;
+  float: left;
 }
 /*--- Typography ---*/
 h2 {
@@ -347,6 +375,11 @@ img#logo{
   overflow: hidden;
   padding: 10px;
   text-align: center;
+}
+#footlegal{
+	width:960px;
+	margin-right: auto;
+	margin-left: auto;
 }
 #footcontainer{
   margin-left: auto;

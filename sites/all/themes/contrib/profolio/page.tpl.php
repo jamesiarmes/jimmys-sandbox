@@ -5,6 +5,8 @@
  */
 
 ?>
+<div id="wrap">
+  <div id="main0">
 <div id="header">
   <div id="headcontainer">
     <div id="logowrap">
@@ -31,6 +33,7 @@
 
   </div>
 </div><!--Header-->
+
 
 <div id="maincontainer">
     <?php if ($page['slider']): ?>
@@ -93,7 +96,10 @@
            <?php endif; ?>
   </div><!--main-->
  </div><!--maincontainer-->
+  </div> <!--main0-->
+</div> <!--maincontainer-->
 
+<div id="footer0">
 <div id="footer">
   <div id="footcontainer">
      <div id="foot1"><?php print render($page['foot1']); ?></div>
@@ -106,4 +112,5 @@
     <?php print render($page['footlegal']); ?>   
   </div>
   <div id="ThemeAuthor"><a href="http://www.evad.be">Theme by Evad.be</a></div>
+</div>
 </div>

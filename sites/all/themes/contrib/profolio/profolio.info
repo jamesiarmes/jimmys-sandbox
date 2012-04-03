@@ -25,9 +25,9 @@ regions[foot3] = foot3
 regions[footlegal] = footlegal
 regions[content] = content
 
-; Information added by drupal.org packaging script on 2012-02-07
-version = "7.x-1.0"
+; Information added by drupal.org packaging script on 2012-03-19
+version = "7.x-1.2"
 core = "7.x"
 project = "profolio"
-datestamp = "1328637647"
+datestamp = "1332154843"
 
