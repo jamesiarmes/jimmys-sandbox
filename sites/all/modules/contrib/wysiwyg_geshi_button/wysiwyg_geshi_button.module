@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Provides a Code button for WYSIWYG editors.
+ */
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ * 
+ * Info: The names here 'geshiButton' and 'geshibutton' MUST be used in the js plugin file!!!
+ */
+function wysiwyg_geshi_button_wysiwyg_plugin($editor, $version) {
+  switch ($editor) {
+    case 'ckeditor':
+      // Add CSS for the button.
+      drupal_add_css(drupal_get_path('module', 'wysiwyg_geshi_button') .'/geshiButton/wysiwyg_geshi_button_editor_ckeditor.css');
+      
+      return array(
+        // Name of the plugin used to write it
+        'geshiButton' => array(
+          'url' => 'http://drupal.org/project/wysiwyg_geshi_button',
+          'path' => drupal_get_path('module', 'wysiwyg_geshi_button') . '/geshiButton',
+          'filename' => 'plugin.js',
+          'buttons' => array(
+            //name of the button
+            'geshibutton' => t('Preformatted code'),
+          ),
+          'load' => TRUE,
+        ),
+      );
+      break;
+  }
+}

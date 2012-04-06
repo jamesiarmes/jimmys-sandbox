@@ -1,0 +1,9 @@
+
+.cke_button_geshibutton span.cke_icon {
+   /*display: none !important;*/
+ }
+ 
+.cke_button_geshibutton span.cke_label {
+  display: inline !important;
+   font-size: 90%;
+}
