@@ -31,45 +31,62 @@ for details.
        
 WARNING!
 -------
-Library location is determined by file scan. This scan is performed only once
-and the location is cached. If the library location is changed for any reason
-(such as after upgrading the js lib), visit admin/reports/status to force a
-re-scan and make sure the "Syntax highlighter js library" status entry shows
-"Installed".
+Library location is determined by file scan. This scan is only performed once
+and the location is cached. If the library location is changed for any reason,
+visit admin/reports/status to force a re-scan and make sure the "Syntax
+highlighter js library" status entry shows "Installed".
 
-Step 2) Enable the syntaxhighlighter module.
+Step 2) Enable the syntaxhighlighter module
 
 
 SETUP
 -----
 
-Enable the Syntaxhighlighter filter in a text format where you want to
-highlight code using the syntaxhighlighter filter.  You do not need to enable
-the Syntaxhighlighter filter in any text format that do not do HTML filtering
-(e.g. Full HTML)
+Enable the Syntaxhighlighter filter in an input format where you want to
+highlight code using the syntaxhighlighter filter.
 
-IMPORTANT! Place the filters in the following relative ordering positions:
+Place the filters in the following relative ordering positions:
 
-+ Limit allowed HTML tags filter (or Wysiwyg filter or whatever HTML filter you use)
++ HTML filter (or Wysiwyg filter or whatever HTML filter you use)
 + Syntax highlighter
 + Line break converter (Autop)
 
+Note the "Line break converter" filter must be behind the "Syntax highlighter"
+filter.
 
 CONFIGURATION
 -------------
 
 Go to admin/config/content/syntaxhighlighter to configure.
 
-
 USAGE
 -----
 
-Mark up code with as specified in http://alexgorbatchev.com/.
+Syntax highlight code in node or comment with:
 
-NOTE: you must make sure your markup is proper HTML. This means if your code
-have any HTML tags or entities in them, you need to change the '<' character
-to '&lt;' (e.g. <script> to &lt;script>), convert '&' in any HTML entity to
-'&amp;' (e.g. &gt; to &amp;gt;).
+{syntaxhighlighter OPTIONS}
+  any program code verbatim
+  ...
+{/syntaxhighlighter}
+
+where OPTIONS is a Syntaxhighlighter options string. Visit
+http://alexgorbatchev.com/ to get details.
+
+If you use version 3.x of the javascript library, the OPTIONS string can be as follow:
+
+  {syntaxhighlighter class="settings..." title="The title of your code block"}
+    program code
+  {/syntaxhighlighter}
+
+NOTE: it's not necessary to escape '<' and '>' in program code as required by
+the Syntaxhighlighter javascript library. The filter in the module does
+that for you. So you can leave your code totally unchanged.
+
+
+GET HELP
+--------
+
+Go to admin/help/syntaxhighlighter or filter/tips to get help
 
 
 About AJAX Usage
