@@ -11,7 +11,7 @@
  * An admin form to specify which language to support for highlighting
  */
 function syntaxhighlighter_settings_form() {
-	// delete the variable to force a re-scan of library location just in case
+// delete the variable to force a re-scan of library location just in case
   variable_del('syntaxhighlighter_lib_location');
   $path = _syntaxhighlighter_get_lib_location();
   if (!$path) {
@@ -139,20 +139,20 @@ function syntaxhighlighter_settings_form() {
       $title = t('Pages or PHP code');
     }
     else {
-    	// show some friendly info message if PHP is not available because...
-    	if (!$has_php_access && !function_exists('php_eval')) {
+    // show some friendly info message if PHP is not available because...
+    if (!$has_php_access && !function_exists('php_eval')) {
         $permission = syntaxhighlighter_permission();
         $php_info_message = t('You need to have the "%permission" permission and enable the "%module_name" module to use PHP code here.',
                               array('%permission' => $permission[SYNTAXHIGHLIGHTER_PHP_PERMISSION]['title'], '%module_name' => t('PHP filter')));
-    	}
-    	elseif (!$has_php_access) {
+    }
+    elseif (!$has_php_access) {
         $permission = syntaxhighlighter_permission();
         $php_info_message = t('You need to have the "%permission" permission to use PHP code here.',
                               array('%permission' => $permission[SYNTAXHIGHLIGHTER_PHP_PERMISSION]['title']));
-    	}
-    	elseif (!function_exists('php_eval')) {
+    }
+    elseif (!function_exists('php_eval')) {
         $php_info_message = t('Enable the "%module_name" module to use PHP code here.', array('%module_name' => t('PHP filter')));
-    	}
+    }
     }
 
     $form['inject_settings']['syntaxhighlighter_inject'] = array(
@@ -162,7 +162,7 @@ function syntaxhighlighter_settings_form() {
       '#default_value' => variable_get('syntaxhighlighter_inject', SYNTAXHIGHLIGHTER_INJECT_EXCEPT_LISTED),
     );
     if (isset($php_info_message)) {
-    	$form['inject_settings']['syntaxhighlighter_inject']['#description'] = $php_info_message;
+    $form['inject_settings']['syntaxhighlighter_inject']['#description'] = $php_info_message;
     }
     $form['inject_settings']['syntaxhighlighter_pages'] = array(
       '#type' => 'textarea',
