@@ -7,9 +7,9 @@ dependencies[] = mailsystem
 core = 7.x
 configure = admin/config/system/htmlmail
 
-; Information added by drupal.org packaging script on 2012-03-19
-version = "7.x-2.64"
+; Information added by drupal.org packaging script on 2012-04-05
+version = "7.x-2.65"
 core = "7.x"
 project = "htmlmail"
-datestamp = "1332160251"
+datestamp = "1333660850"
 
