@@ -1,9 +1,9 @@
-name = Twitter Signin
-description = Adds support for "Sign in with Twitter"
+name = Twitter Mock
+description = Sets up a mock web server to simulate API calls on tests
 core = 7.x
+hidden = TRUE
 dependencies[] = twitter
-dependencies[] = oauth_common
-configure = admin/config/services/twitter/signin
+dependencies[] = simpletest
 
 ; Information added by drupal.org packaging script on 2012-08-11
 version = "7.x-3.2"
