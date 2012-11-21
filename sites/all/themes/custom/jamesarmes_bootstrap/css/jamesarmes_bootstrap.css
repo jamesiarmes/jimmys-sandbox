@@ -1,0 +1,114 @@
+#header {
+ margin: 107px 0 0 0;
+}
+
+#logo {
+  max-height: 48px;
+}
+
+#site-name {
+  vertical-align: middle;
+}
+
+#main-menu .navbar-inner {
+  background-color: #1B1B1B;
+  background-image: -moz-linear-gradient(top, #222, #111);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222), to(#111));
+  background-image: -webkit-linear-gradient(top, #222, #111);
+  background-image: -o-linear-gradient(top, #222, #111);
+  background-image: linear-gradient(to bottom, #222, #111);
+  border: 0 0 1px 0 solid #999;
+  padding: 0 20px;
+}
+
+#main-menu a, #secondary-menu a {
+  color: #999;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+#main-menu a.active, #secondary-menu a.active {
+  color: #fff;
+  background: #111;
+}
+
+#main-menu a:hover, #secondary-menu a:hover {
+  color: #fff;
+}
+
+ul.main-menu > li {
+  line-height: 48px;
+}
+
+#secondary-menu .navbar {
+  top: 69px;
+  z-index: 1030;
+}
+
+#secondary-menu .navbar-inner {
+  background-color: #121212;
+  background-image: none;
+  padding: 0 20px;
+}
+
+#secondary-menu, .secondary-menu > li, #secondary-menu input {
+  line-height: 16px;
+}
+
+#secondary-menu .search-form {
+	margin: 5px 0 0 0;
+}
+
+#secondary-menu .form-item {
+	margin: 0;
+}
+
+#secondary-menu input {
+	height: 16px;
+}
+
+.social-icon {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+}
+
+.social-icon.drupal {
+  background-image: url(../img/drupal.png);
+}
+
+.social-icon.facebook {
+  background-image: url(../img/facebook.png);
+}
+
+.social-icon.feed {
+  background-image: url(../img/rss.png);
+}
+
+.social-icon.flickr {
+  background-image: url(../img/flickr.png);
+}
+
+.social-icon.github {
+  background-image: url(../img/github.png);
+}
+
+.social-icon.gplus {
+  background-image: url(../img/google-plus.png);
+}
+
+.social-icon.linkedin {
+  background-image: url(../img/linkedin.png);
+}
+
+.social-icon.twitter {
+  background-image: url(../img/twitter.png);
+}
+
+body.front .content .node-promoted {
+  border-bottom: 1px solid #999;
+  padding-bottom: 10px;
+}
+
+#admin-menu, #admin-menu .dropdown {
+  z-index: 1099;
+}

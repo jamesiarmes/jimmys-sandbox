@@ -1,0 +1,7 @@
+name = JamesArmes.com Bootstrap Theme
+description = Twitter Bootstrap theme for jamesarmes.com based on Open Framework
+core = 7.x
+engine = phptemplate
+base theme = open_framework
+
+stylesheets[all][] = css/jamesarmes_bootstrap.css
