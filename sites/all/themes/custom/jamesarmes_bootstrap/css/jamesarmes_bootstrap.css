@@ -109,6 +109,6 @@ body.front .content .node-promoted {
   padding-bottom: 10px;
 }
 
-#admin-menu, #admin-menu .dropdown {
+#admin-menu, #admin-menu .dropdown, #toolbar {
   z-index: 1099;
 }
