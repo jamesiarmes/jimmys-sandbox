@@ -179,6 +179,11 @@ ul.main-menu > li {
   background: url(../img/comment_bg.png) no-repeat -2619px 0;
 }
 
+.comment-new .submitted:after {
+  color: #f00;
+  content: "* new"
+} 
+
 .comment .comment-message {
   background: url(../img/comment_bg.png) repeat-y -63px 0;
   margin-left: 13px;
