@@ -140,3 +140,57 @@ ul.main-menu > li {
   border-radius: 10px;
   padding: 0 15px;
 }
+
+/** ADMIN OVERLAY **/
+
+#overlay-container {
+  margin-top: 80px;
+}
+
+/** COMMENTS **/
+
+.comment {
+	margin: 0 0 0 20px;
+	width: 611px;
+	background: url(../img/comment_bg.gif) no-repeat -1271px bottom;
+	padding-bottom: 3px;
+}
+
+.comment .user-picture {
+	display: inline;
+	float: left;
+	height: 50px;
+	margin-top: 4px;
+	width: 50px;
+}
+
+.comment .content {
+	width: 551px;
+	float: right;
+	display: inline;
+}
+
+.comment .submitted {
+	padding: 12px 17px 12px 33px;
+	background: url(../img/comment_bg.gif) no-repeat -691px 0;
+}
+
+.comment .comment-message {
+	background: url(../img/comment_bg.gif) repeat-y -63px 0;
+	padding: 12px 17px 0 20px;
+	margin-left: 13px;
+}
+
+.comment-links {
+	background: url(../img/comment_bg.gif) repeat-y -63px 0;
+	padding: 0 17px 0 20px;
+	margin-left: 13px;
+}
+
+.comment-links .links {
+	margin: 0;
+}
+
+.comment-links .links .first {
+	padding-left: 0;
+}
