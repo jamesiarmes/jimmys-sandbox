@@ -82,41 +82,42 @@ ul.main-menu > li {
 /** SOCIAL ICONS **/
 
 .social-icon {
+  background-image: url(../img/social-icons.png);
+  display: inline-block;
   height: 16px;
   width: 16px;
-  display: inline-block;
 }
 
 .social-icon.drupal {
-  background-image: url(../img/drupal.png);
+  background-position: 0 0;
 }
 
 .social-icon.facebook {
-  background-image: url(../img/facebook.png);
+  background-position: 0 -26px;
 }
 
 .social-icon.feed {
-  background-image: url(../img/rss.png);
+  background-position: 0 -156px;
 }
 
 .social-icon.flickr {
-  background-image: url(../img/flickr.png);
+  background-position: 0 -52px;
 }
 
 .social-icon.github {
-  background-image: url(../img/github.png);
+  background-position: 0 -78px;
 }
 
 .social-icon.gplus {
-  background-image: url(../img/google-plus.png);
+  background-position: 0 -104px;
 }
 
 .social-icon.linkedin {
-  background-image: url(../img/linkedin.png);
+  background-position: 0 -130px;
 }
 
 .social-icon.twitter {
-  background-image: url(../img/twitter.png);
+  background-position: 0 -182px;
 }
 
 /** TAGS **/
