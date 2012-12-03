@@ -203,3 +203,72 @@ ul.main-menu > li {
 .comment-links .links .first {
   padding-left: 0;
 }
+
+/** COMMENT FORM **/
+
+#comments .form-item label {
+  float: left;
+  width: 94px;
+}
+
+#comments .form-type-checkbox label {
+  float: none;
+  padding-top: 0;
+  width: auto;
+}
+
+#comments .form-checkbox {
+  float: left;
+  margin: 4px 5px 0 94px;
+}
+
+#comments .form-item {
+  margin: 15px 0;
+}
+
+#comments .form-item-notify-type {
+  margin-left: 94px;
+}
+
+#comments .description {
+  margin-left: 94px;
+  margin-top: 15px;
+  width: 535px;
+}
+
+#comments .mollom-privacy {
+  font-style: italic;
+  margin-bottom: 15px;
+  margin-left: 0;
+}
+
+#comments .mollom-privacy:before {
+  content: "Note:\00a0";
+}
+
+#comments input {
+  width: 517px;
+}
+
+#comments input.form-submit {
+ width: auto;
+}
+
+#comments input.form-text,
+#comments input.form-file,
+#comments select.form-select,
+#comments textarea {
+  padding: 8px;
+}
+
+#comments textarea {
+  font-size: 1em;
+  line-height: 1.6em;
+  width: 535px;
+}
+
+#comments .resizable-textarea .grippie {
+  margin-left: 94px;
+  width: 535px;
+}
+

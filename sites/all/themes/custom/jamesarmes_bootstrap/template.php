@@ -4,6 +4,7 @@
  * Theme overrides and processing functions for the JamesArmes.com Bootstrap
  * theme.
  */
+
 /**
  * Implements theme_menu_tree__MENU_NAME().
  *
@@ -109,3 +110,17 @@ function jamesarmes_bootstrap_username_alter(&$name, $account) {
     $name .= " $last_name";
   }
 }
+
+/**
+ * Implements hook_FORM_ID_alter().
+ *
+ * Change the comment notification type to a select only displayed when
+ * notifications have been enabled.
+ */
+function jamesarmes_bootstrap_form_comment_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['notify_settings'])) {
+    $form['notify_settings']['notify_type']['#states']['visible'][] = array(':input[name="notify"]' => array('checked' => TRUE));
+    $form['notify_settings']['notify_type']['#type'] = 'select';
+  }
+}
+
