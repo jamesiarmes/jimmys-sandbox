@@ -218,9 +218,14 @@ ul.main-menu > li {
   width: auto;
 }
 
+#comments input {
+  width: 517px;
+}
+
 #comments .form-checkbox {
   float: left;
   margin: 4px 5px 0 94px;
+  width: auto;
 }
 
 #comments .form-item {
@@ -247,17 +252,12 @@ ul.main-menu > li {
   content: "Note:\00a0";
 }
 
-#comments input {
-  width: 517px;
-}
-
 #comments input.form-submit {
  width: auto;
 }
 
 #comments input.form-text,
 #comments input.form-file,
-#comments select.form-select,
 #comments textarea {
   padding: 8px;
 }
