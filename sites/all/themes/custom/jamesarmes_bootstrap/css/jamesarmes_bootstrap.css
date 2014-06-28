@@ -15,8 +15,9 @@ body.front .content .node-promoted {
   padding-bottom: 10px;
 }
 
-#admin-menu, #admin-menu .dropdown, #toolbar {
-  z-index: 1099;
+/** NAVIGATION BAR **/
+#navbar-administration {
+  z-index: 1050;
 }
 
 /** MAIN MENU **/
@@ -183,7 +184,7 @@ ul.main-menu > li {
 .comment-new .submitted:after {
   color: #f00;
   content: "* new"
-} 
+}
 
 .comment .comment-message {
   background: url(../img/comment_bg.png) repeat-y -63px 0;
