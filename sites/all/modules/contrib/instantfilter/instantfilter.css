@@ -1,0 +1,28 @@
+/* Align Instant filter to the right. */
+.form-type-instantfilter {
+  float: right;
+  width: 25em;
+  text-align: right;
+}
+.form-type-instantfilter + * {
+  clear: right;
+}
+
+/* Set a reasonable width for the search field. */
+.form-type-instantfilter .form-text {
+  width: 15em;
+}
+
+/* Hide the Instant filter form elements unless Javascript is enabled. */
+.form-type-instantfilter  {
+  display: none;
+}
+html.js .form-type-instantfilter  {
+  display: block;
+}
+
+/* Hide items and groups which have no matches. */
+.instantfilter-item-no-match,
+.instantfilter-group-no-match {
+  display: none;
+}

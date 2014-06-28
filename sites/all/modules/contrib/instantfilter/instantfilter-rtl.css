@@ -1,0 +1,7 @@
+.form-type-instantfilter {
+  float: left;
+  text-align: left;
+}
+.form-type-instantfilter + * {
+  clear: left;
+}

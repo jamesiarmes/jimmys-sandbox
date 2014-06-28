@@ -1,0 +1,315 @@
+<?php
+
+/**
+ * @file
+ * Provides a Javascript utility to instantly filter data.
+ */
+
+/**
+ * Implements hook_library().
+ */
+function instantfilter_library() {
+  $module_path = drupal_get_path('module', 'instantfilter');
+
+  $libraries['instantfilter'] = array(
+    'title' => 'Instant filter',
+    'website' => 'http://drupal.org/project/instantfilter',
+    'version' => '1.0',
+    'js' => array(
+      $module_path . '/instantfilter.js' => array(),
+    ),
+    'css' => array(
+      $module_path . '/instantfilter.css' => array(),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_element_info().
+ */
+function instantfilter_element_info() {
+  $types['instantfilter'] = array(
+    '#input' => TRUE,
+    '#process' => array('instantfilter_process_element'),
+    '#theme_wrappers' => array('form_element'),
+  );
+
+  return $types;
+}
+
+/**
+ * Form element process handler for the instantfilter form element.
+ *
+ * @param $element
+ *   The form element to process. Properties used:
+ *   - #instantfilter: An associative array containing:
+ *     - container: (optional) The starting point for the item and group search.
+ *       Defaults to the document's body.
+ *     - empty: (optional) Text to display if the filtering resulted in no
+ *       matching items.
+ *     - groups: An associative array with as key a selector defining a group
+ *       items. The value is an empty array or an associative array containing:
+ *       - title: (optional) Flags an item previous to the group as the title
+ *         of the group. The value is an empty string or a selector filtering
+ *         the item previous to the group.
+ *       - items: (optional) Selector defining the items in this group.
+ *       - zebra: (optional) Boolean indicating if the items have odd/even
+ *         CSS classes, also known as zebra striping.
+ *     - items: An associative array with as key a selector defining items.
+ *       Multiple selectors can be used each as a new array entry. The value of
+ *       each array entry is an empty array or an associative array containing:
+ *       - ignore: (optional) Selector flagging elements descendant of the item
+ *         to be ignored.
+ *       - allow: (optional) Selector flagging elements descendant of the item
+ *        to be allowed.
+ *       - includeNext: (optional) Flags the item next to the current item to be
+ *         added to the current item. The value is an empty string or a selector
+ *         filtering the item next to the current item.
+ */
+function instantfilter_process_element($element, &$form_state, $form) {
+  $element['#tree'] = TRUE;
+  if (!isset($element['#title'])) {
+    $element['#title'] = t('Keyword search');
+  }
+  $element['#title_display'] = 'invisible';
+
+  if (!isset($element['#suffix'])) {
+    $element['#suffix'] = '';
+  }
+
+  // Add an empty wrapper element for the 'no results' message.
+  $element['#suffix'] .= '<div class="instantfilter-no-results"></div>';
+
+  $element['filter'] = array(
+    '#type' => 'textfield',
+    // Use ID of instantfilter element so label points to this element.
+    '#id' => $element['#id'],
+    // Remove form element wrapper as the instantfilter element already has one.
+    '#theme_wrappers' => array(),
+    '#attributes' => array(
+      'title' => isset($element['#title']) ? $element['#title'] : t('Enter keywords.'),
+    ),
+  );
+
+  $settings = array();
+  if (isset($element['#instantfilter']['container'])) {
+    $settings['container'] = $element['#instantfilter']['container'];
+  }
+  elseif (isset($element['#array_parents'])) {
+    $settings['container'] = '#' . $form['#id'];
+  }
+
+  if (isset($element['#instantfilter']['groups'])) {
+    $settings['groups'] = $element['#instantfilter']['groups'];
+  }
+
+  if (isset($element['#instantfilter']['items'])) {
+    $settings['items'] = $element['#instantfilter']['items'];
+  }
+
+  if (isset($element['#instantfilter']['empty'])) {
+    $settings['empty'] = $element['#instantfilter']['empty'];
+  }
+
+  $element['#attached']['library'][] = array('instantfilter', 'instantfilter');
+  $element['#attached']['js'][] = array('type' => 'setting', 'data' => array(
+    'instantfilter' => array(
+      $element['#id'] => $settings,
+    ),
+  ));
+
+  return $element;
+}
+
+/**
+ * Creates an Instant filter form element to be added in admin/config.
+ */
+function instantfilter_config_form() {
+  $form['filter'] = array(
+    '#id' => 'edit-filter',
+    '#type' => 'instantfilter',
+    '#title' => t('Filter configuration'),
+    '#description' => t('Enter keywords to filter the list of configuration settings.'),
+    '#instantfilter' => array(
+      'container' => '.admin:first',
+      'groups' => array(
+        'div.admin-panel' => array(),
+      ),
+      'items' => array(
+        '.leaf' => array(),
+        'dt' => array('includeNext' => 'dd'),
+      ),
+    ),
+    '#weight' => -1,
+  );
+  return $form;
+}
+
+/**
+ * Creates an Instant filter form element to be added in admin/reports/updates.
+ */
+function instantfilter_update_form() {
+  $form['filter'] = array(
+    '#id' => 'edit-filter',
+    '#type' => 'instantfilter',
+    '#title' => t('Filter updates'),
+    '#description' => t('Enter keywords to filter the list of available updates.'),
+    '#instantfilter' => array(
+      'container' => 'body',
+      'groups' => array(
+        'table.update' => array(
+          'title' => 'h3',
+          'items' => 'tr.ok, tr.warning, tr.error, tr.unknown',
+          'zebra' => TRUE,
+        ),
+      ),
+      'items' => array(
+        'tr.ok, tr.warning, tr.error, tr.unknown' => array(
+          'allow' => 'div.project a, div.info em',
+        ),
+      ),
+    ),
+    '#weight' => -1,
+  );
+  return $form;
+}
+
+/**
+ * Helper function which adds an Instant filter form to an admin page.
+ */
+function _instantfilter_add_to_page($form_id, $page) {
+  if (isset($page['content']) && isset($page['content']['system_main'])) {
+    // Bartik and Seven.
+    $page['content']['system_main']['filter'] = drupal_get_form($form_id);
+    $page['content']['system_main']['filter']['#weight'] = -1;
+  }
+  else {
+    // Garland and Stark.
+    $page['content'] = isset($page['content']) ? $page['content'] : array();
+    $page['content']['filter'] = drupal_get_form($form_id);
+    $page['content']['filter']['#weight'] = -1;
+  }
+
+  return $page;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function instantfilter_page_build(&$page) {
+  $item = menu_get_item();
+
+  switch ($item['path']) {
+    case 'admin/config':
+      $page = _instantfilter_add_to_page('instantfilter_config_form', $page);
+      break;
+
+    case 'admin/reports/updates':
+    case 'admin/reports/updates/list':
+      $page = _instantfilter_add_to_page('instantfilter_update_form', $page);
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the system modules form.
+ */
+function instantfilter_form_system_modules_alter(&$form, $form_state) {
+  // Do not alter the form when confirming.
+  if (isset($form['confirm'])) {
+    return;
+  }
+
+  $form['modulesfilter'] = array(
+    '#type' => 'instantfilter',
+    '#title' => t('Filter modules'),
+    '#description' => t('Enter keywords to filter the list of modules.'),
+    '#instantfilter' => array(
+      'groups' => array(
+        'fieldset' => array('items' => 'table > tbody > tr', 'zebra' => TRUE),
+      ),
+      'items' => array(
+        'table > tbody > tr' => array(
+          'allow' => 'td:nth-child(2)',
+        )
+      ),
+    ),
+    '#weight' => -1,
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the user admin account form.
+ */
+function instantfilter_form_user_admin_account_alter(&$form, $form_state) {
+  $form['options']['#weight'] = -5;
+
+  $form['accountsfilter'] = array(
+    '#type' => 'instantfilter',
+    '#title' => t('Filter users'),
+    '#description' => t('Enter keywords to filter the list of users.'),
+    '#instantfilter' => array(
+      'groups' => array(
+        'table' => array('items' => 'tbody > tr', 'zebra' => TRUE)
+      ),
+      'items' => array(
+        'table > tbody > tr' => array(
+          'allow' => 'td:nth-child(2)',
+        )
+      ),
+    ),
+    '#weight' => -1,
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the node admin content form.
+ */
+function instantfilter_form_node_admin_content_alter(&$form, $form_state) {
+  if (!empty($form['admin']['options']['#access'])) {
+    $form['admin']['options']['#weight'] = -5;
+  }
+
+  $form['admin']['nodesfilter'] = array(
+    '#type' => 'instantfilter',
+    '#title' => t('Filter content'),
+    '#description' => t('Enter keywords to filter the list of content.'),
+    '#instantfilter' => array(
+      'groups' => array(
+        'table' => array('items' => 'tbody > tr', 'zebra' => TRUE)
+      ),
+      'items' => array(
+        'table > tbody > tr' => array(
+          'allow' => 'td:nth-child(2)',
+        )
+      ),
+    ),
+    '#weight' => -1,
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the comment admin overview form.
+ */
+function instantfilter_form_comment_admin_overview_alter(&$form, $form_state) {
+  $form['options']['#weight'] = -5;
+
+  $form['commentsfilter'] = array(
+    '#type' => 'instantfilter',
+    '#title' => t('Filter comments'),
+    '#description' => t('Enter keywords to filter the list of comments.'),
+    '#instantfilter' => array(
+      'groups' => array(
+        'table > tbody' => array('items' => 'tr', 'zebra' => TRUE)
+      ),
+      'items' => array(
+        'table > tbody > tr' => array(
+          'allow' => 'td:nth-child(2), td:nth-child(3)',
+        )
+      ),
+    ),
+    '#weight' => -1,
+  );
+}
