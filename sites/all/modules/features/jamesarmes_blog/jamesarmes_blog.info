@@ -2,6 +2,7 @@ name = Blog
 description = Blog content type and views.
 core = 7.x
 package = jamesarmes.com Features
+php = 5.2.4
 version = 7.x-1.0
 project = jamesarmes_blog
 dependencies[] = ctools

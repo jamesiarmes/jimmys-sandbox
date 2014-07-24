@@ -11,7 +11,7 @@ function jamesarmes_blog_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'Blog';
+  $view->name = 'blog';
   $view->description = 'A listing of blog entries.';
   $view->tag = 'blog';
   $view->base_table = 'node';
@@ -31,6 +31,13 @@ function jamesarmes_blog_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'teaser';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No results found for the specified period.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
