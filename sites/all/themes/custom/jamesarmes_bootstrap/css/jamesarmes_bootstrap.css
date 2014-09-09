@@ -150,6 +150,13 @@ ul.main-menu > li {
   margin-top: 80px;
 }
 
+/** CONTENT **/
+
+.blog-image-left {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
 /** COMMENTS **/
 
 .comment {
